@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Список новостей{% endblock %}
+{% block content %}
+    <h2>Список новостей</h2>
+    <ul>
+        {% for item in news %}
+            <li style="margin-bottom: 30px;">
+                <h3>{{ item.title }}</h3>
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" style="max-width: 200px;">
+                {% endif %}
+                <p>{{ item.content|truncatewords:30 }}</p>
+                <a href="{% url 'news_detail' item.pk %}">Читать далее</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %} 
