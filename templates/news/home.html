@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Главная{% endblock %}
 {% block content %}
-    <h2>Добро пожаловать на портал новостей!</h2>
-    <p>Сегодня: {{ today }}</p>
-    <p>Это мини-новостной портал на Django.</p>
+<div class="container home-container">
+    <h2 class="main-title">Добро пожаловать на портал новостей!</h2>
+    <div class="home-meta">Сегодня: <span>{{ today }}</span></div>
+    <p class="home-desc">Это мини-новостной портал на Django. Здесь вы найдете свежие новости, интересные статьи и многое другое.</p>
+    <a href="/news/" class="main-btn">Перейти к новостям</a>
+</div>
 {% endblock %} 

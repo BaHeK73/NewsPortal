@@ -1,17 +1,26 @@
 {% extends 'base.html' %}
 {% block title %}Список новостей{% endblock %}
 {% block content %}
+<div class="container">
     <h2>Список новостей</h2>
-    <ul>
+    <form method="get" class="filter-form">
+        <select name="tag">
+            <option value="">Все теги</option>
+            {% for tag in tags %}
+                <option value="{{ tag.id }}" {% if tag.id|stringformat:'s' == selected_tag %}selected{% endif %}>{{ tag.name }}</option>
+            {% endfor %}
+        </select>
+        <select name="order">
+            <option value="desc" {% if order == 'desc' %}selected{% endif %}>Сначала новые</option>
+            <option value="asc" {% if order == 'asc' %}selected{% endif %}>Сначала старые</option>
+        </select>
+        <input type="text" name="q" placeholder="Поиск..." value="{{ q }}">
+        <button type="submit">Применить</button>
+    </form>
+    <div class="news-grid">
         {% for item in news %}
-            <li style="margin-bottom: 30px;">
-                <h3>{{ item.title }}</h3>
-                {% if item.image %}
-                    <img src="{{ item.image.url }}" alt="{{ item.title }}" style="max-width: 200px;">
-                {% endif %}
-                <p>{{ item.content|truncatewords:30 }}</p>
-                <a href="{% url 'news_detail' item.pk %}">Читать далее</a>
-            </li>
+            {% include 'includes/news_card.html' %}
         {% endfor %}
-    </ul>
+    </div>
+</div>
 {% endblock %} 

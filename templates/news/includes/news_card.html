@@ -1,0 +1,18 @@
+<div class="news-card">
+    {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="news-image">
+    {% endif %}
+    <div class="news-content">
+        <div class="news-meta">
+            <span>{{ item.created_at|date:"d.m.Y H:i" }}</span>
+            <div class="news-tags">
+                {% for tag in item.tags.all %}
+                    <span class="tag">{{ tag.name }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <h3 class="news-title">{{ item.title }}</h3>
+        <p class="news-excerpt">{{ item.content|truncatewords:30 }}</p>
+        <a href="{% url 'news_detail' item.pk %}" class="read-more">Читать далее</a>
+    </div>
+</div> 
