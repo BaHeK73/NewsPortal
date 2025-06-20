@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView, DetailView
-from .models import News, Tag
+from .models import News, Tag, Article
 from django.db.models import Q
 from datetime import datetime
 
@@ -11,12 +11,14 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['today'] = datetime.now().strftime('%d.%m.%Y')
+        context['latest_articles'] = Article.objects.order_by('-created_at')[:3]
         return context
 
 class NewsListView(ListView):
     model = News
     template_name = 'news_list.html'
     context_object_name = 'news'
+    paginate_by = 2
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -43,6 +45,17 @@ class NewsListView(ListView):
         context['q'] = self.request.GET.get('q', '')
         return context
 
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'article_list.html'
+    context_object_name = 'articles'
+    paginate_by = 6
+
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'article_detail.html'
+    context_object_name = 'article'
+
 class NewsDetailView(DetailView):
     model = News
     template_name = 'news_detail.html'
@@ -50,4 +63,7 @@ class NewsDetailView(DetailView):
 
 class AboutView(TemplateView):
     template_name = 'about.html'
+
+
+
 

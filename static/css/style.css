@@ -330,4 +330,43 @@ footer {
 
 .news-card {
     animation: fadeIn 0.6s ease-out;
+}
+
+/* Пагинация */
+.pagination {
+    margin: 2.5rem 0 0 0;
+    text-align: center;
+}
+.pagination ul {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(60,60,120,0.07);
+    overflow: hidden;
+}
+.pagination li {
+    margin: 0;
+}
+.pagination a {
+    display: block;
+    padding: 0.7rem 1.3rem;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: background 0.2s, color 0.2s;
+}
+.pagination a:hover {
+    background: #667eea;
+    color: #fff;
+}
+.pagination .current {
+    display: block;
+    padding: 0.7rem 1.3rem;
+    color: #444;
+    font-weight: 700;
+    background: #e9ecef;
+    font-size: 1.05rem;
 } 

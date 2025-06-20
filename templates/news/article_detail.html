@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block content %}
+<div class="container news-detail">
+    {% if article.image %}
+        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="news-detail-image">
+    {% endif %}
+    <div class="news-detail-content">
+        <h2 class="news-detail-title">{{ article.title }}</h2>
+        <div class="news-detail-meta">Дата публикации: {{ article.created_at|date:"d.m.Y" }}</div>
+        <div class="news-detail-text">{{ article.content }}</div>
+        <a href="{% url 'article_list' %}" class="main-btn">К списку статей</a>
+    </div>
+</div>
+{% endblock %} 

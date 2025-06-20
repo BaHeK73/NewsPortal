@@ -1,0 +1,15 @@
+{% if is_paginated %}
+<div class="pagination">
+    <ul>
+        {% if page_obj.has_previous %}
+            <li><a href="?{% if selected_tag %}tag={{ selected_tag }}&{% endif %}{% if order %}order={{ order }}&{% endif %}{% if q %}q={{ q }}&{% endif %}page=1">&laquo; Первая</a></li>
+            <li><a href="?{% if selected_tag %}tag={{ selected_tag }}&{% endif %}{% if order %}order={{ order }}&{% endif %}{% if q %}q={{ q }}&{% endif %}page={{ page_obj.previous_page_number }}">&lsaquo; Назад</a></li>
+        {% endif %}
+        <li class="current">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</li>
+        {% if page_obj.has_next %}
+            <li><a href="?{% if selected_tag %}tag={{ selected_tag }}&{% endif %}{% if order %}order={{ order }}&{% endif %}{% if q %}q={{ q }}&{% endif %}page={{ page_obj.next_page_number }}">Вперёд &rsaquo;</a></li>
+            <li><a href="?{% if selected_tag %}tag={{ selected_tag }}&{% endif %}{% if order %}order={{ order }}&{% endif %}{% if q %}q={{ q }}&{% endif %}page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
+{% endif %} 

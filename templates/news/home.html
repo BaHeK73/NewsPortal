@@ -6,5 +6,28 @@
     <div class="home-meta">Сегодня: <span>{{ today }}</span></div>
     <p class="home-desc">Это мини-новостной портал на Django. Здесь вы найдете свежие новости, интересные статьи и многое другое.</p>
     <a href="/news/" class="main-btn">Перейти к новостям</a>
+    {% if latest_articles %}
+    <div class="latest-articles-block">
+        <h3 class="section-title">Последние статьи</h3>
+        <div class="news-grid">
+            {% for article in latest_articles %}
+                <div class="news-card">
+                    {% if article.image %}
+                        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="news-image">
+                    {% endif %}
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <span>{{ article.created_at|date:"d.m.Y H:i" }}</span>
+                        </div>
+                        <h4 class="news-title">{{ article.title }}</h4>
+                        <p class="news-excerpt">{{ article.content|truncatewords:20 }}</p>
+                        <a href="{% url 'article_detail' article.pk %}" class="read-more">Читать статью</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'article_list' %}" class="main-btn" style="margin-top:1.5rem;">Все статьи</a>
+    </div>
+    {% endif %}
 </div>
 {% endblock %} 
