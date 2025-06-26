@@ -4,5 +4,15 @@
         <a href="/news/">Новости</a>
         <a href="/about/">О портале</a>
         <a href="/admin/">Админка</a>
+        {% if user.is_authenticated %}
+            <a href="/users/profile/" class="main-btn" style="margin-left:2rem;">Профиль</a>
+            <form action="/users/logout/" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="main-btn" style="margin-left:1rem;">Выйти</button>
+            </form>
+        {% else %}
+            <a href="/users/login/" class="main-btn" style="margin-left:2rem;">Вход</a>
+            <a href="/users/register/" class="main-btn" style="margin-left:1rem;">Регистрация</a>
+        {% endif %}
     </div>
 </nav> 

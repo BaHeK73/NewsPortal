@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="max-width: 480px; margin-top: 48px;">
+    <h2 class="main-title" style="margin-bottom: 1.5rem; text-align:center;">Редактировать профиль</h2>
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 1.2rem;">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div style="color: #e74c3c; font-size: 1em; margin-bottom: 0.7rem;">{{ form.non_field_errors }}</div>
+        {% endif %}
+        <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+            <label for="id_first_name">Имя</label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}<div style="color: #e74c3c; font-size: 0.95em;">{{ form.first_name.errors }}</div>{% endif %}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+            <label for="id_last_name">Фамилия</label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}<div style="color: #e74c3c; font-size: 0.95em;">{{ form.last_name.errors }}</div>{% endif %}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+            <label for="id_email">Email</label>
+            {{ form.email }}
+            {% if form.email.errors %}<div style="color: #e74c3c; font-size: 0.95em;">{{ form.email.errors }}</div>{% endif %}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+            <label for="id_avatar">Аватар</label>
+            {{ form.avatar }}
+            {% if form.avatar.errors %}<div style="color: #e74c3c; font-size: 0.95em;">{{ form.avatar.errors }}</div>{% endif %}
+        </div>
+        <button type="submit" class="main-btn" style="width: 100%; margin-top: 1.2rem;">Сохранить</button>
+    </form>
+    <div style="margin-top: 1.5rem; text-align:center;">
+        <a href="{% url 'profile' %}" style="color: #667eea; text-decoration: underline;">Назад к профилю</a>
+    </div>
+</div>
+{% endblock %} 

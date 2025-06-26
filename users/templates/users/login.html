@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="max-width: 420px; margin-top: 48px; text-align: center;">
+    <h2 class="main-title" style="margin-bottom: 1.5rem;">Вход</h2>
+    <form method="post" style="display: flex; flex-direction: column; gap: 1.2rem;">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div style="color: #e74c3c; font-size: 1em; margin-bottom: 0.7rem;">{{ form.non_field_errors }}</div>
+        {% endif %}
+        <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+            <label for="id_username">Имя пользователя</label>
+            <input type="text" name="username" maxlength="150" autofocus required class="form-input" id="id_username" placeholder="Имя пользователя" value="{{ form.username.value|default:'' }}">
+            {% if form.username.errors %}<div style="color: #e74c3c; font-size: 0.95em;">{{ form.username.errors }}</div>{% endif %}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+            <label for="id_password">Пароль</label>
+            <input type="password" name="password" required class="form-input" id="id_password" placeholder="Пароль">
+            {% if form.password.errors %}<div style="color: #e74c3c; font-size: 0.95em;">{{ form.password.errors }}</div>{% endif %}
+        </div>
+        <button type="submit" class="main-btn" style="width: 100%; margin-top: 1.2rem;">Войти</button>
+    </form>
+    <div style="margin-top: 1.5rem; font-size: 1.05rem;">
+        Нет аккаунта? <a href="{% url 'register' %}" style="color: #667eea; text-decoration: underline;">Зарегистрироваться</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="max-width: 480px; margin-top: 48px; text-align: center;">
+    <h2 class="main-title" style="margin-bottom: 1.5rem;">Профиль пользователя {{ user.username }}</h2>
+    {% if user.avatar %}
+        <img src="{{ user.avatar.url }}" alt="Аватар" style="width: 120px; height: 120px; object-fit: cover; border-radius: 50%; margin-bottom: 1.2rem; box-shadow: 0 2px 8px rgba(102,126,234,0.10);">
+    {% else %}
+        <div style="width: 120px; height: 120px; background: #e9ecef; border-radius: 50%; display: inline-block; margin-bottom: 1.2rem;"></div>
+    {% endif %}
+    <div style="font-size: 1.15rem; color: #2c3e50; margin-bottom: 0.7rem; font-weight: 600;">{{ user.first_name }} {{ user.last_name }}</div>
+    <div style="font-size: 1.05rem; color: #555; margin-bottom: 0.7rem;">Email: {{ user.email }}</div>
+    <div style="font-size: 1.05rem; color: #555;">Имя пользователя: {{ user.username }}</div>
+    <div style="margin-top: 1.5rem;">
+        <a href="{% url 'edit_profile' %}" class="main-btn">Редактировать профиль</a>
+    </div>
+</div>
+{% endblock %}

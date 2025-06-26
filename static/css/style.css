@@ -369,4 +369,28 @@ footer {
     font-weight: 700;
     background: #e9ecef;
     font-size: 1.05rem;
+}
+
+.form-input {
+    padding: 0.7rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    min-width: 160px;
+    background: #f8f9fa;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    color: #222;
+    box-shadow: 0 1px 4px rgba(102,126,234,0.04);
+}
+.form-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(102,126,234,0.10);
+}
+.form-input[type="file"] {
+    padding: 0.4rem 0.2rem;
+    background: none;
+    box-shadow: none;
 } 
